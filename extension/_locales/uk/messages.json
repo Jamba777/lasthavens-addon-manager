@@ -82,5 +82,35 @@
   },
   "interfaceWarning": {
     "message": "TOC не заявляє Interface 30300. Сумісність не перевірена."
+  },
+  "errorPath": {
+    "message": "Неприпустимий шлях в архіві: {detail}"
+  },
+  "errorArchiveSize": {
+    "message": "ZIP перевищує 32 МБ."
+  },
+  "errorExpanded": {
+    "message": "Перевищено обмеження: файл 16 МБ або розпакований архів 64 МБ."
+  },
+  "errorIntegrity": {
+    "message": "Помилка перевірки цілісності файлу: {detail}"
+  },
+  "errorFolder": {
+    "message": "Неприпустима або повторювана папка аддона: {detail}"
+  },
+  "errorToc": {
+    "message": "Відсутній основний Folder/Folder.toc."
+  },
+  "errorUnsupported": {
+    "message": "Непідтримуваний ZIP: шифрування, ZIP64, кілька томів, посилання або метод стиснення."
+  },
+  "errorDuplicate": {
+    "message": "Повторюваний шлях в архіві: {detail}"
+  },
+  "errorZip": {
+    "message": "ZIP-архів пошкоджений або некоректний."
+  },
+  "errorUnexpected": {
+    "message": "Операцію не виконано. Перевір вільне місце у сховищі браузера та повтори."
   }
 }

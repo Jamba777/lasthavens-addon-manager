@@ -82,5 +82,35 @@
   },
   "interfaceWarning": {
     "message": "El TOC no declara Interface 30300. Compatibilidad sin verificar."
+  },
+  "errorPath": {
+    "message": "Ruta no permitida en el archivo: {detail}"
+  },
+  "errorArchiveSize": {
+    "message": "El ZIP supera los 32 MB."
+  },
+  "errorExpanded": {
+    "message": "Se supera el límite de 16 MB por fichero o 64 MB descomprimidos."
+  },
+  "errorIntegrity": {
+    "message": "Error de integridad del fichero: {detail}"
+  },
+  "errorFolder": {
+    "message": "Carpeta de addon inválida o duplicada: {detail}"
+  },
+  "errorToc": {
+    "message": "Falta el archivo principal Folder/Folder.toc."
+  },
+  "errorUnsupported": {
+    "message": "ZIP no compatible: cifrado, ZIP64, varios volúmenes, enlaces o método de compresión."
+  },
+  "errorDuplicate": {
+    "message": "Ruta duplicada en el archivo: {detail}"
+  },
+  "errorZip": {
+    "message": "El archivo ZIP no es válido o está dañado."
+  },
+  "errorUnexpected": {
+    "message": "La operación falló. Comprueba el espacio del navegador e inténtalo de nuevo."
   }
 }

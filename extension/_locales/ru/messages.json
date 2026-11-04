@@ -82,5 +82,35 @@
   },
   "interfaceWarning": {
     "message": "TOC не заявляет Interface 30300. Совместимость не проверена."
+  },
+  "errorPath": {
+    "message": "Недопустимый путь в архиве: {detail}"
+  },
+  "errorArchiveSize": {
+    "message": "ZIP превышает 32 МБ."
+  },
+  "errorExpanded": {
+    "message": "Превышен лимит: файл 16 МБ или распакованный архив 64 МБ."
+  },
+  "errorIntegrity": {
+    "message": "Ошибка проверки целостности файла: {detail}"
+  },
+  "errorFolder": {
+    "message": "Недопустимая или повторяющаяся папка аддона: {detail}"
+  },
+  "errorToc": {
+    "message": "Отсутствует основной Folder/Folder.toc."
+  },
+  "errorUnsupported": {
+    "message": "Неподдерживаемый ZIP: шифрование, ZIP64, несколько томов, ссылки или метод сжатия."
+  },
+  "errorDuplicate": {
+    "message": "Повторяющийся путь в архиве: {detail}"
+  },
+  "errorZip": {
+    "message": "ZIP-архив повреждён или некорректен."
+  },
+  "errorUnexpected": {
+    "message": "Операция не выполнена. Проверь свободное место в хранилище браузера и повтори."
   }
 }

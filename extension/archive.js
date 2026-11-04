@@ -1,3 +1,4 @@
+import { AddonError } from "./errors.js";
 import { unzipSync, zipSync } from "./vendor/fflate.js";
 export const LIMITS = {
   archive: 32 * 1024 * 1024,
@@ -31,11 +32,11 @@ function safePath(name) {
     /[\x00-\x1f:]/.test(p) ||
     p.split("/").some((s) => s === ".." || s === ".")
   )
-    throw Error("Недопустимый путь в ZIP: " + name);
+    throw new AddonError("errorPath", { detail: name });
   return p;
 }
 function inspectZip(bytes) {
-  if (bytes.length > LIMITS.archive) throw Error("ZIP больше 32 МБ.");
+  if (bytes.length > LIMITS.archive) throw new AddonError("errorArchiveSize");
   const v = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   let e = -1;
   for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 65557); i--) {
@@ -47,23 +48,23 @@ function inspectZip(bytes) {
       break;
     }
   }
-  if (e < 0) throw Error("Не удалось прочитать ZIP.");
+  if (e < 0) throw new AddonError("errorZip");
   if (v.getUint16(e + 4, true) || v.getUint16(e + 6, true))
-    throw Error("Многотомные ZIP не поддерживаются.");
+    throw new AddonError("errorUnsupported");
   const count = v.getUint16(e + 10, true),
     start = v.getUint32(e + 16, true),
     length = v.getUint32(e + 12, true);
   if (count === 65535 || start === 0xffffffff || length === 0xffffffff)
-    throw Error("ZIP64 не поддерживается.");
+    throw new AddonError("errorZip");
   if (count > LIMITS.count || start + length > e)
-    throw Error("Некорректный или слишком большой каталог ZIP.");
+    throw new AddonError("errorZip");
   let at = start,
     total = 0;
   const meta = new Map(),
     seen = new Set();
   for (let i = 0; i < count; i++) {
     if (at + 46 > bytes.length || v.getUint32(at, true) !== 0x02014b50)
-      throw Error("Повреждён каталог ZIP.");
+      throw new AddonError("errorZip");
     const flags = v.getUint16(at + 8, true),
       method = v.getUint16(at + 10, true),
       size = v.getUint32(at + 24, true),
@@ -72,15 +73,15 @@ function inspectZip(bytes) {
       comment = v.getUint16(at + 32, true),
       offset = v.getUint32(at + 42, true);
     if (flags & 1 || ![0, 8].includes(method))
-      throw Error("Зашифрованный ZIP или неподдерживаемый метод сжатия.");
+      throw new AddonError("errorUnsupported");
     if (at + 46 + n + extra + comment > start + length)
-      throw Error("Повреждена запись ZIP.");
+      throw new AddonError("errorZip");
     const name = decoder.decode(bytes.subarray(at + 46, at + 46 + n)),
       path = safePath(name);
     if (((v.getUint32(at + 38, true) >>> 16) & 0xf000) === 0xa000)
-      throw Error("Символические ссылки в ZIP не поддерживаются.");
+      throw new AddonError("errorUnsupported");
     if (offset + 30 > start || v.getUint32(offset, true) !== 0x04034b50)
-      throw Error("Повреждён заголовок файла ZIP.");
+      throw new AddonError("errorZip");
     const ln = v.getUint16(offset + 26, true),
       le = v.getUint16(offset + 28, true),
       compressed = v.getUint32(at + 20, true);
@@ -88,19 +89,17 @@ function inspectZip(bytes) {
       offset + 30 + ln + le + compressed > start ||
       decoder.decode(bytes.subarray(offset + 30, offset + 30 + ln)) !== name
     )
-      throw Error("Не совпадают заголовки ZIP.");
+      throw new AddonError("errorZip");
     total += size;
     if (size > LIMITS.file || total > LIMITS.expanded)
-      throw Error(
-        "После распаковки превышен лимит: 16 МБ на файл / 64 МБ на архив.",
-      );
+      throw new AddonError("errorExpanded");
     if (seen.has(path.toLowerCase()))
-      throw Error("Повторяющийся путь в ZIP: " + path);
+      throw new AddonError("errorDuplicate", { detail: path });
     seen.add(path.toLowerCase());
     meta.set(name, { path, size, crc: v.getUint32(at + 16, true) });
     at += 46 + n + extra + comment;
   }
-  if (at !== start + length) throw Error("Некорректный размер каталога ZIP.");
+  if (at !== start + length) throw new AddonError("errorZip");
   return meta;
 }
 function tocMeta(text) {
@@ -127,7 +126,7 @@ export async function importZip(bytes) {
   for (const [name, data] of Object.entries(raw)) {
     const m = meta.get(name);
     if (!m || data.length !== m.size || crc32(data) !== m.crc)
-      throw Error("Проверка целостности не пройдена: " + name);
+      throw new AddonError("errorIntegrity", { detail: name });
     if (!m.path.endsWith("/") && !m.path.startsWith("__MACOSX/"))
       files.set(m.path, data);
   }
@@ -147,8 +146,7 @@ export async function importZip(bytes) {
     if (tocs.length === 1)
       roots.push({ root: "", folder: tocs[0].slice(0, -4), toc: tocs[0] });
   }
-  if (!roots.length)
-    throw Error("Не найден Folder/Folder.toc. Выберите ZIP аддона для 3.3.5.");
+  if (!roots.length) throw new AddonError("errorToc");
   // Embedded libraries belong to their parent addon, not separate addons.
   const topRoots = roots.filter(
     (r) =>
@@ -167,9 +165,9 @@ export async function importZip(bytes) {
       !/^[A-Za-z0-9_-]+$/.test(r.folder) ||
       r.folder.toLowerCase().startsWith("blizzard_")
     )
-      throw Error("Недопустимое имя папки аддона: " + r.folder);
+      throw new AddonError("errorFolder", { detail: r.folder });
     if (seen.has(r.folder.toLowerCase()))
-      throw Error("Несколько аддонов с одинаковой папкой: " + r.folder);
+      throw new AddonError("errorFolder", { detail: r.folder });
     seen.add(r.folder.toLowerCase());
     const info = tocMeta(decoder.decode(files.get(r.toc))),
       own = {};
@@ -195,7 +193,7 @@ export async function importZip(bytes) {
         (p) => p.toLowerCase() === r.folder.toLowerCase() + ".toc",
       )
     )
-      throw Error("Отсутствует основной TOC.");
+      throw new AddonError("errorToc");
     const signature = new TextEncoder().encode(
       JSON.stringify(
         Object.entries(own).sort(([a], [b]) => a.localeCompare(b)),

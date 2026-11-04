@@ -22,7 +22,7 @@
           .toLowerCase()
           .includes("interface/addons/" + folder.toLowerCase() + "/")
       )
-        throw Error("Конфликт со штатным аддоном: " + folder);
+        throw Error("Built-in addon folder conflict: " + folder);
     for (const a of payload.addons)
       for (const [p, b64] of Object.entries(a.files)) {
         const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
@@ -63,7 +63,7 @@
     install(files, location.href);
     report(
       "ready",
-      "Подготовлено локальных аддонов: " + folders.length,
+      "Local addons prepared: " + folders.length,
       payload.revision,
       folders,
     );
@@ -86,7 +86,7 @@
         });
     }
     if (e.data.kind === "changed")
-      report("pending", "Список изменён. Перезагрузите игру для применения.");
+      report("pending", "Library changed. Reload the game to apply.");
   });
   window.Worker = class extends NativeWorker {
     constructor(url, options) {
@@ -111,7 +111,7 @@
       received = true;
       report(
         "error",
-        "Нет ответа от расширения. Игра запущена без локальных аддонов.",
+        "Extension payload timeout. Starting without local addons.",
       );
       resolve({ files: {}, spans: [] });
     }

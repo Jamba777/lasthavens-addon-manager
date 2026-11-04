@@ -1,18 +1,23 @@
-**Lasthavens Addon Manager — Chrome extension for local addons**
+**Lasthavens Addon Manager — Chrome extension**
 
-Experimental addon manager for the Lasthavens 3.3.5a browser client.
+I've made an extension for managing local addons in the Lasthavens 3.3.5a browser client.
 
-- Import ZIP archives, including multiple addons and bundled libraries.
-- View versions, file sizes and dependency hints.
-- Enable or disable addons with an explicit switch.
-- Update by re-importing, export ZIPs and remove local addons.
-- English, Ukrainian, Russian, Spanish, French and Portuguese.
+- Import addon ZIPs, including multiple addons and bundled libraries.
+- Enable or disable addons with a labeled switch.
+- Update by importing a new ZIP, export addons or remove them.
+- Available in English, Ukrainian, Russian, Spanish, French and Portuguese.
 
-Addon files stay in your Chrome profile. Changes require reloading the game page. Built-in addons remain managed through the game's library.
+**Installation**
 
-Install: download the release ZIP, extract it, open chrome://extensions, enable Developer mode, click Load unpacked and choose the directory containing manifest.json.
+1. Download the extension ZIP from the release's **Assets** and extract it.
+2. Open `chrome://extensions` in Chrome.
+3. **Enable Developer mode** in the upper-right corner.
+4. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
+5. Open the extension, import an addon ZIP, enable it and **reload the game page**.
 
-Version 0.2.0 is experimental. Automated local import, UI and worker-fixture checks pass; full installed-extension compatibility with the current game client and every third-party addon is not yet confirmed. For bug reports, include the extension version, addon name/version and error text. Do not include account credentials.
+Use addons intended for **WoW 3.3.5a**. Addon files are stored in your Chrome profile. Changes require reloading the game page; removing an addon preserves its game settings.
 
-Repository: [add link after publication]
-Releases: [add link after publication]
+This is an experimental release. Automated local checks pass, but full compatibility with the current game client and every addon is still being verified. If something fails, please report the extension version, addon name/version and error message.
+
+**Download:** https://github.com/Jamba777/lasthavens-addon-manager/releases
+**Source & issues:** https://github.com/Jamba777/lasthavens-addon-manager

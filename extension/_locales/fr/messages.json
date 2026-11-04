@@ -82,5 +82,35 @@
   },
   "interfaceWarning": {
     "message": "Le TOC ne déclare pas Interface 30300. Compatibilité non vérifiée."
+  },
+  "errorPath": {
+    "message": "Chemin interdit dans l’archive : {detail}"
+  },
+  "errorArchiveSize": {
+    "message": "Le ZIP dépasse 32 Mo."
+  },
+  "errorExpanded": {
+    "message": "La limite de 16 Mo par fichier ou de 64 Mo décompressés est dépassée."
+  },
+  "errorIntegrity": {
+    "message": "Échec du contrôle d’intégrité : {detail}"
+  },
+  "errorFolder": {
+    "message": "Dossier d’addon invalide ou en double : {detail}"
+  },
+  "errorToc": {
+    "message": "Le fichier principal Folder/Folder.toc est absent."
+  },
+  "errorUnsupported": {
+    "message": "ZIP non pris en charge : chiffrement, ZIP64, volumes multiples, liens ou compression."
+  },
+  "errorDuplicate": {
+    "message": "Chemin en double dans l’archive : {detail}"
+  },
+  "errorZip": {
+    "message": "L’archive ZIP est invalide ou endommagée."
+  },
+  "errorUnexpected": {
+    "message": "L’opération a échoué. Vérifiez l’espace du navigateur puis réessayez."
   }
 }

@@ -82,5 +82,35 @@
   },
   "interfaceWarning": {
     "message": "The TOC does not declare Interface 30300. Compatibility is unverified."
+  },
+  "errorPath": {
+    "message": "Unsafe archive path: {detail}"
+  },
+  "errorArchiveSize": {
+    "message": "ZIP exceeds 32 MB."
+  },
+  "errorExpanded": {
+    "message": "Unpacked data exceeds the 16 MB per-file or 64 MB archive limit."
+  },
+  "errorIntegrity": {
+    "message": "File integrity check failed: {detail}"
+  },
+  "errorFolder": {
+    "message": "Invalid or duplicate addon folder: {detail}"
+  },
+  "errorToc": {
+    "message": "Main Folder/Folder.toc is missing."
+  },
+  "errorUnsupported": {
+    "message": "Unsupported ZIP format: encryption, ZIP64, multiple volumes, symbolic links or compression method."
+  },
+  "errorDuplicate": {
+    "message": "Duplicate archive path: {detail}"
+  },
+  "errorZip": {
+    "message": "The ZIP archive is invalid or damaged."
+  },
+  "errorUnexpected": {
+    "message": "The operation failed. Check browser storage space and try again."
   }
 }

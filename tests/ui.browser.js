@@ -106,6 +106,41 @@ try {
     path: "test-results/manager-ru.png",
     fullPage: true,
   });
+  await page.locator("#language").selectOption("en");
+  await page.waitForFunction(() => document.documentElement.lang === "en");
+  await sw.check();
+  await page.waitForFunction(
+    () => JSON.parse(localStorage.getItem("library")).addons[0].enabled,
+  );
+  await page.reload();
+  await sw.waitFor();
+  fs.mkdirSync("docs/images", { recursive: true });
+  await page.screenshot({ path: "docs/images/manager-en.png", fullPage: true });
+  for (const [locale, expected] of [
+    ["en", "ZIP archive"],
+    ["ru", "ZIP-архив"],
+    ["uk", "ZIP-архів"],
+    ["es", "archivo ZIP"],
+    ["fr", "archive ZIP"],
+    ["pt_BR", "arquivo ZIP"],
+  ]) {
+    await page.locator("#language").selectOption(locale);
+    await page.waitForFunction(
+      (l) => document.documentElement.lang === l.replace("_", "-"),
+      locale,
+    );
+    await page.locator("#import").setInputFiles({
+      name: "broken.zip",
+      mimeType: "application/zip",
+      buffer: Buffer.from([1, 2, 3]),
+    });
+    await page.waitForFunction(
+      (text) => document.querySelector("#message").textContent.includes(text),
+      expected,
+    );
+  }
+  await page.locator("#language").selectOption("ru");
+  await page.waitForFunction(() => document.documentElement.lang === "ru");
   await page.setViewportSize({ width: 390, height: 844 });
   assert(
     await page.evaluate(

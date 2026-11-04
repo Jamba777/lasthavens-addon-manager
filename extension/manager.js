@@ -1,4 +1,5 @@
 import { importZip, exportZip } from "./archive.js";
+import { AddonError } from "./errors.js";
 import {
   mergeAddons,
   toggleAddon,
@@ -30,7 +31,9 @@ $("#version").textContent = " · v" + chrome.runtime.getManifest().version;
 function showMessage(key, extra = "") {
   messageKey = key;
   details = extra;
-  $("#message").textContent = (key ? t(key) : "") + (extra ? " " + extra : "");
+  $("#message").textContent = key
+    ? t(key, typeof extra === "object" ? extra : {})
+    : "";
 }
 function download(addon) {
   const url = URL.createObjectURL(
@@ -53,10 +56,12 @@ async function action(fn) {
   try {
     await fn();
   } catch (error) {
-    showMessage(
-      error.message === "libraryLimit" ? "libraryLimit" : "importError",
-      error.message === "libraryLimit" ? "" : error.message,
-    );
+    if (error instanceof AddonError) showMessage(error.code, error.params);
+    else if (error.message === "libraryLimit") showMessage("libraryLimit");
+    else {
+      console.error("Addon manager operation failed", error);
+      showMessage("errorUnexpected");
+    }
   } finally {
     busy = false;
     render();
