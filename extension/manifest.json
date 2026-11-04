@@ -1,17 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Lasthavens Addon Manager",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "__MSG_description__",
   "minimum_chrome_version": "120",
   "permissions": ["storage", "unlimitedStorage"],
   "host_permissions": ["https://lasthavens.com/*"],
-  "action": {
-    "default_title": "Менеджер аддонов"
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
+  "action": { "default_title": "Менеджер аддонов" },
+  "background": { "service_worker": "background.js" },
   "options_page": "manager.html",
   "content_scripts": [
     {

@@ -15,12 +15,25 @@ Modules: archive parses and validates ZIPs; library contains immutable operation
 
 Upload the contents of this repository directory, including `.github/`, package.json and package-lock.json. CI runs formatting, unit tests and packaging on pushes and pull requests.
 
-For a release, update the version in package.json, package-lock.json and extension/manifest.json, commit, then:
+Releases run when a **new version tag is pushed**, not on ordinary pushes to main. Prepare the version before creating the tag. The following command updates package.json and package-lock.json; the version hook also synchronizes extension/manifest.json:
 
 ```sh
-git tag v0.2.0
-git push origin v0.2.0
+npm version 0.5.0 --no-git-tag-version
+npm run check
+npm run test:browser
 ```
+
+The working tree is already prepared for 0.3.1; skip the version command if it already has that version. Update docs/RELEASE.md, review and commit the changes, then tag that commit:
+
+```sh
+git add package.json package-lock.json extension/manifest.json scripts/sync-version.js scripts/build.js docs/RELEASE.md docs/DEVELOPMENT.md
+git commit -m "Prepare release 0.3.1"
+git tag v0.3.1
+git push origin main
+git push origin v0.3.1
+```
+
+For subsequent releases, choose a new version and use the same value in the npm command and tag. A tag pointing to an older commit still builds the old files; changing main and rerunning that tag will not fix a version mismatch. Do not reuse published tags. Version 0.3.0 was tagged while the project still declared 0.2.0, so its build failed before attaching assets; 0.3.1 corrects this mismatch.
 
 The Release workflow verifies the tag/version match, checks the code, builds the extension ZIP and creates a **draft** GitHub Release with the ZIP and SHA256SUMS. Open Releases, review the draft and publish. The workflow uses GITHUB_TOKEN with contents:write; no personal token is needed. Repository policies may require enabling Actions/write permissions. Automatic building does not publish to Chrome Web Store. Unpacked extensions do not update themselves: users replace files and reload the extension.
 

@@ -1,4 +1,8 @@
-# 0.2.0
+# 0.5.0
+
+- Fix release version alignment and synchronize the extension manifest when preparing versions with npm.
+- Localize import errors in all six interface languages.
+- Expand installation instructions, including Developer mode, and add an English interface screenshot.
 
 - Neutral addon-management interface; no promotional headings or demo-addon button.
 - Six interface languages: Ukrainian, Russian, English, Spanish, French, Portuguese.

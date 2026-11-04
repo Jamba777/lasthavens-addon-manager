@@ -13,7 +13,9 @@ if (
   process.env.GITHUB_REF_TYPE === "tag" &&
   process.env.GITHUB_REF_NAME !== `v${manifest.version}`
 )
-  throw Error("Tag must match manifest version");
+  throw Error(
+    `Release tag ${process.env.GITHUB_REF_NAME} does not match project version ${manifest.version}. Expected v${manifest.version}. Update the version with npm version <version> --no-git-tag-version, commit the changes, then tag that commit.`,
+  );
 const files = {};
 async function walk(dir, prefix = "") {
   for (const entry of (await readdir(dir, { withFileTypes: true })).sort(
