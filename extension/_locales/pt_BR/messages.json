@@ -1,0 +1,86 @@
+{
+  "title": {
+    "message": "Gerenciador de addons"
+  },
+  "description": {
+    "message": "Addons ZIP locais para Lasthavens 3.3.5a."
+  },
+  "importZip": {
+    "message": "Importar ZIP"
+  },
+  "play": {
+    "message": "Abrir jogo"
+  },
+  "hint": {
+    "message": "As alterações são aplicadas após recarregar a página do jogo."
+  },
+  "waiting": {
+    "message": "Aguardando o jogo"
+  },
+  "storageTitle": {
+    "message": "Armazenamento"
+  },
+  "storageInfo": {
+    "message": "Os arquivos ficam neste perfil do Chrome. Remover um addon preserva suas configurações no jogo. Os addons integrados são gerenciados na biblioteca do jogo."
+  },
+  "limits": {
+    "message": "Limites: ZIP 32 MB; arquivo descompactado 64 MB; arquivo individual 16 MB; biblioteca 96 MB."
+  },
+  "reloadInfo": {
+    "message": "Recarregue o jogo quando puder interromper a sessão."
+  },
+  "empty": {
+    "message": "Nenhum addon local. Importe um ZIP."
+  },
+  "enabled": {
+    "message": "Ativado"
+  },
+  "disabled": {
+    "message": "Desativado"
+  },
+  "exportZip": {
+    "message": "Exportar ZIP"
+  },
+  "remove": {
+    "message": "Remover"
+  },
+  "saved": {
+    "message": "Salvo. Recarregue o jogo para aplicar as alterações."
+  },
+  "imported": {
+    "message": "Importação concluída. Novos addons ficam desativados."
+  },
+  "noVersion": {
+    "message": "Sem versão"
+  },
+  "files": {
+    "message": "arquivos"
+  },
+  "addons": {
+    "message": "addons"
+  },
+  "active": {
+    "message": "ativados"
+  },
+  "dependencies": {
+    "message": "Verifique as dependências: {names}. Elas podem estar na biblioteca do jogo."
+  },
+  "changed": {
+    "message": "Há alterações pendentes. Recarregue o jogo."
+  },
+  "ready": {
+    "message": "Addons locais preparados: {count}"
+  },
+  "loadError": {
+    "message": "Erro no carregador. O jogo pode iniciar sem addons locais."
+  },
+  "importError": {
+    "message": "Não foi possível importar o arquivo. Detalhes técnicos:"
+  },
+  "libraryLimit": {
+    "message": "A biblioteca excede 96 MB."
+  },
+  "interfaceWarning": {
+    "message": "O TOC não declara Interface 30300. Compatibilidade não verificada."
+  }
+}

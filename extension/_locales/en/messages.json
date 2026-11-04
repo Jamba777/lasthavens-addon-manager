@@ -1,0 +1,86 @@
+{
+  "title": {
+    "message": "Addon manager"
+  },
+  "description": {
+    "message": "Local ZIP addons for Lasthavens 3.3.5a."
+  },
+  "importZip": {
+    "message": "Import ZIP"
+  },
+  "play": {
+    "message": "Open game"
+  },
+  "hint": {
+    "message": "Changes apply after reloading the game page."
+  },
+  "waiting": {
+    "message": "Waiting for the game"
+  },
+  "storageTitle": {
+    "message": "Storage"
+  },
+  "storageInfo": {
+    "message": "Addon files stay in this Chrome profile. Removing an addon preserves its game settings. Built-in addons are managed in the game library."
+  },
+  "limits": {
+    "message": "Limits: ZIP 32 MB; unpacked archive 64 MB; file 16 MB; library 96 MB."
+  },
+  "reloadInfo": {
+    "message": "Reload the game page when you are ready to interrupt the session."
+  },
+  "empty": {
+    "message": "No local addons. Import a ZIP."
+  },
+  "enabled": {
+    "message": "Enabled"
+  },
+  "disabled": {
+    "message": "Disabled"
+  },
+  "exportZip": {
+    "message": "Export ZIP"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "saved": {
+    "message": "Saved. Reload the game to apply changes."
+  },
+  "imported": {
+    "message": "Imported. New addons are disabled by default."
+  },
+  "noVersion": {
+    "message": "No version"
+  },
+  "files": {
+    "message": "files"
+  },
+  "addons": {
+    "message": "addons"
+  },
+  "active": {
+    "message": "enabled"
+  },
+  "dependencies": {
+    "message": "Check required dependencies: {names}. They may be installed in the game library."
+  },
+  "changed": {
+    "message": "Changes pending. Reload the game."
+  },
+  "ready": {
+    "message": "Prepared local addons: {count}"
+  },
+  "loadError": {
+    "message": "Loader error. The game may start without local addons."
+  },
+  "importError": {
+    "message": "Could not import the archive. Technical details:"
+  },
+  "libraryLimit": {
+    "message": "Library exceeds 96 MB."
+  },
+  "interfaceWarning": {
+    "message": "The TOC does not declare Interface 30300. Compatibility is unverified."
+  }
+}

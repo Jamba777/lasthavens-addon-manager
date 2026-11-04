@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lasthavens Addon Manager</title>
+    <link rel="stylesheet" href="manager.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="topbar">
+          <span class="eyebrow"
+            >LASTHAVENS · WOTLK 3.3.5a <span id="version"></span></span
+          ><select id="language" aria-label="Language"></select>
+        </div>
+        <h1 data-i18n="title"></h1>
+      </header>
+      <section class="toolbar">
+        <label class="primary"
+          ><span data-i18n="importZip"></span
+          ><input
+            id="import"
+            type="file"
+            accept=".zip"
+            multiple
+            hidden /></label
+        ><button id="play" data-i18n="play"></button>
+      </section>
+      <p class="hint" data-i18n="hint"></p>
+      <div id="message" role="status" aria-live="polite"></div>
+      <section class="summary">
+        <strong id="count"></strong><span id="status"></span>
+      </section>
+      <div id="list"></div>
+      <section class="footer">
+        <h2 data-i18n="storageTitle"></h2>
+        <p data-i18n="storageInfo"></p>
+        <p data-i18n="limits"></p>
+        <p data-i18n="reloadInfo"></p>
+      </section>
+    </main>
+    <script type="module" src="manager.js"></script>
+  </body>
+</html>

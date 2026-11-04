@@ -1,0 +1,22 @@
+{
+  "name": "lasthavens-addon-manager",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "node scripts/build.js",
+    "check": "npm run format:check && npm test && npm run build",
+    "test:browser": "node tests/ui.browser.js && node tests/runtime.browser.js"
+  },
+  "devDependencies": {
+    "fflate": "0.8.3",
+    "playwright": "1.64.1",
+    "prettier": "3.6.2"
+  }
+}

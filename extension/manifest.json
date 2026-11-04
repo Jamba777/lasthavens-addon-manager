@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Lasthavens Addon Manager",
+  "version": "0.2.0",
+  "description": "__MSG_description__",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "unlimitedStorage"],
+  "host_permissions": ["https://lasthavens.com/*"],
+  "action": {
+    "default_title": "Менеджер аддонов"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "manager.html",
+  "content_scripts": [
+    {
+      "matches": ["https://lasthavens.com/play*"],
+      "js": ["runtime-core.js", "loader.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://lasthavens.com/play*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "default_locale": "en"
+}
