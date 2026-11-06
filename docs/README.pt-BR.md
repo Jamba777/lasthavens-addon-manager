@@ -36,10 +36,10 @@ Os arquivos ficam no perfil atual do Chrome. A remoção preserva as configuraç
 
 | Limite                | Máximo |
 | --------------------- | -----: |
-| Arquivo ZIP           |  32 MB |
-| Arquivo descompactado |  64 MB |
-| Arquivo individual    |  16 MB |
-| Biblioteca de addons  |  96 MB |
+| Arquivo ZIP           | 128 MB |
+| Arquivo descompactado | 256 MB |
+| Arquivo individual    |  64 MB |
+| Biblioteca de addons  | 384 MB |
 
 **Versão experimental:** as verificações locais automatizadas passam; a compatibilidade completa da extensão instalada com o cliente atual e addons de terceiros ainda está sendo verificada. [Status de validação](VALIDATION.md).
 

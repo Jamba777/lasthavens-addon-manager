@@ -24,7 +24,7 @@
     "message": "Addon files stay in this Chrome profile. Removing an addon preserves its game settings. Built-in addons are managed in the game library."
   },
   "limits": {
-    "message": "Limits: ZIP 32 MB; unpacked archive 64 MB; file 16 MB; library 96 MB."
+    "message": "Limits: ZIP 128 MB; unpacked archive 256 MB; file 64 MB; library 384 MB."
   },
   "reloadInfo": {
     "message": "Reload the game page when you are ready to interrupt the session."
@@ -78,7 +78,7 @@
     "message": "Could not import the archive. Technical details:"
   },
   "libraryLimit": {
-    "message": "Library exceeds 96 MB."
+    "message": "Library exceeds 384 MB."
   },
   "interfaceWarning": {
     "message": "The TOC does not declare Interface 30300. Compatibility is unverified."
@@ -87,10 +87,10 @@
     "message": "Unsafe archive path: {detail}"
   },
   "errorArchiveSize": {
-    "message": "ZIP exceeds 32 MB."
+    "message": "ZIP exceeds 128 MB."
   },
   "errorExpanded": {
-    "message": "Unpacked data exceeds the 16 MB per-file or 64 MB archive limit."
+    "message": "Unpacked data exceeds the 64 MB per-file or 256 MB archive limit."
   },
   "errorIntegrity": {
     "message": "File integrity check failed: {detail}"

@@ -18,7 +18,7 @@ Upload the contents of this repository directory, including `.github/`, package.
 Releases run when a **new version tag is pushed**, not on ordinary pushes to main. Prepare the version before creating the tag. The following command updates package.json and package-lock.json; the version hook also synchronizes extension/manifest.json:
 
 ```sh
-npm version 0.5.0 --no-git-tag-version
+npm version 0.5.1 --no-git-tag-version
 npm run check
 npm run test:browser
 ```

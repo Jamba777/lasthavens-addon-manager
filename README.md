@@ -46,10 +46,10 @@ Addon files are stored locally in the current Chrome profile. Enabled addon file
 
 | Limit               | Maximum |
 | ------------------- | ------: |
-| ZIP archive         |   32 MB |
-| Unpacked archive    |   64 MB |
-| Individual file     |   16 MB |
-| Local addon library |   96 MB |
+| ZIP archive         |  128 MB |
+| Unpacked archive    |  256 MB |
+| Individual file     |   64 MB |
+| Local addon library |  384 MB |
 
 **Experimental:** automated import, UI and worker-fixture checks pass, but full installed-extension compatibility with the current game client and every third-party addon is not yet confirmed. See [validation status](docs/VALIDATION.md). When reporting a problem, include the extension version, addon name/version and error text.
 

@@ -24,7 +24,7 @@
     "message": "Os arquivos ficam neste perfil do Chrome. Remover um addon preserva suas configurações no jogo. Os addons integrados são gerenciados na biblioteca do jogo."
   },
   "limits": {
-    "message": "Limites: ZIP 32 MB; arquivo descompactado 64 MB; arquivo individual 16 MB; biblioteca 96 MB."
+    "message": "Limites: ZIP 128 MB; arquivo descompactado 256 MB; arquivo individual 64 MB; biblioteca 384 MB."
   },
   "reloadInfo": {
     "message": "Recarregue o jogo quando puder interromper a sessão."
@@ -78,7 +78,7 @@
     "message": "Não foi possível importar o arquivo. Detalhes técnicos:"
   },
   "libraryLimit": {
-    "message": "A biblioteca excede 96 MB."
+    "message": "A biblioteca excede 384 MB."
   },
   "interfaceWarning": {
     "message": "O TOC não declara Interface 30300. Compatibilidade não verificada."
@@ -87,10 +87,10 @@
     "message": "Caminho não permitido no arquivo: {detail}"
   },
   "errorArchiveSize": {
-    "message": "O ZIP excede 32 MB."
+    "message": "O ZIP excede 128 MB."
   },
   "errorExpanded": {
-    "message": "O limite de 16 MB por arquivo ou 64 MB descompactados foi excedido."
+    "message": "O limite de 64 MB por arquivo ou 256 MB descompactados foi excedido."
   },
   "errorIntegrity": {
     "message": "Falha na verificação de integridade: {detail}"

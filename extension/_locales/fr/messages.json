@@ -24,7 +24,7 @@
     "message": "Les fichiers sont conservés dans ce profil Chrome. La suppression conserve les réglages de l’addon dans le jeu. Les addons intégrés se gèrent dans la bibliothèque du jeu."
   },
   "limits": {
-    "message": "Limites : ZIP 32 Mo ; archive décompressée 64 Mo ; fichier 16 Mo ; bibliothèque 96 Mo."
+    "message": "Limites : ZIP 128 Mo ; archive décompressée 256 Mo ; fichier 64 Mo ; bibliothèque 384 Mo."
   },
   "reloadInfo": {
     "message": "Rechargez le jeu lorsque vous pouvez interrompre la session."
@@ -78,7 +78,7 @@
     "message": "Import impossible. Détails techniques :"
   },
   "libraryLimit": {
-    "message": "La bibliothèque dépasse 96 Mo."
+    "message": "La bibliothèque dépasse 384 Mo."
   },
   "interfaceWarning": {
     "message": "Le TOC ne déclare pas Interface 30300. Compatibilité non vérifiée."
@@ -87,10 +87,10 @@
     "message": "Chemin interdit dans l’archive : {detail}"
   },
   "errorArchiveSize": {
-    "message": "Le ZIP dépasse 32 Mo."
+    "message": "Le ZIP dépasse 128 Mo."
   },
   "errorExpanded": {
-    "message": "La limite de 16 Mo par fichier ou de 64 Mo décompressés est dépassée."
+    "message": "La limite de 64 Mo par fichier ou de 256 Mo décompressés est dépassée."
   },
   "errorIntegrity": {
     "message": "Échec du contrôle d’intégrité : {detail}"

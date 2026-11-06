@@ -1,11 +1,11 @@
 import { AddonError } from "./errors.js";
 import { unzipSync, zipSync } from "./vendor/fflate.js";
 export const LIMITS = {
-  archive: 32 * 1024 * 1024,
-  expanded: 64 * 1024 * 1024,
-  file: 16 * 1024 * 1024,
-  count: 8000,
-  total: 96 * 1024 * 1024,
+  archive: 128 * 1024 * 1024,
+  expanded: 256 * 1024 * 1024,
+  file: 64 * 1024 * 1024,
+  count: 32000,
+  total: 384 * 1024 * 1024,
 };
 const decoder = new TextDecoder();
 export function crc32(bytes) {
