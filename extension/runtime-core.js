@@ -3,6 +3,56 @@ globalThis.LHInstallOverlay = function (files, base) {
   const Native = XMLHttpRequest,
     paths = Object.keys(files);
   const entries = paths.map((p) => files[p].size + "\t" + p).join("\n");
+  const origin = new URL(base).origin;
+  const findBlock = (path) => {
+    const match = path.match(/^\/blocks\/(.+)\/\d+-(\d+)-(\d+)k\.bin$/);
+    if (!match) return null;
+    let name;
+    try {
+      name = decodeURIComponent(match[1]);
+    } catch {
+      return null;
+    }
+    if (!Object.hasOwn(files, name)) return null;
+    const length = Number(match[3]) * 1024;
+    return { file: files[name], start: Number(match[2]) * length, length };
+  };
+  if (typeof window !== "undefined" && paths.length) {
+    // The page also prefetches WebVFS blocks using fetch, outside the worker.
+    const nativeFetch = globalThis.fetch.bind(globalThis);
+    globalThis.fetch = async (input, options) => {
+      const url = new URL(
+        input instanceof Request ? input.url : String(input),
+        base,
+      );
+      const method =
+        options?.method ?? (input instanceof Request ? input.method : "GET");
+      const block =
+        url.origin === origin && method.toUpperCase() === "GET"
+          ? findBlock(url.pathname)
+          : null;
+      if (!block) return nativeFetch(input, options);
+      const { file, start, length } = block;
+      if (!length || start >= file.size)
+        return new Response(null, { status: 416 });
+      const end = Math.min(start + length, file.size) - 1;
+      const result = await nativeFetch(file.url, {
+        headers: { Range: `bytes=${start}-${end}` },
+        signal:
+          options?.signal ??
+          (input instanceof Request ? input.signal : undefined),
+      });
+      if (result.status === 206)
+        return new Response(result.body, {
+          headers: { "Content-Type": "application/octet-stream" },
+        });
+      if (!result.ok) return result;
+      const full = await result.blob();
+      return new Response(
+        full.slice(start, end + 1, "application/octet-stream"),
+      );
+    };
+  }
   globalThis.XMLHttpRequest = class extends Native {
     open(method, url, ...args) {
       this.answer = null;

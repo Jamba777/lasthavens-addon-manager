@@ -57,7 +57,6 @@ async function action(fn) {
     await fn();
   } catch (error) {
     if (error instanceof AddonError) showMessage(error.code, error.params);
-    else if (error.message === "libraryLimit") showMessage("libraryLimit");
     else {
       console.error("Addon manager operation failed", error);
       showMessage("errorUnexpected");

@@ -1,3 +1,4 @@
-# 0.5.1
+# 0.5.2
 
-- Update file limits.
+- Fix injecting addons in game.
+- Disable file limits.

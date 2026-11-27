@@ -34,13 +34,6 @@ Décompressez la nouvelle version dans le même dossier d’installation. Ouvrez
 
 Les fichiers restent dans le profil Chrome actuel. La suppression conserve les réglages du jeu. Les dossiers intégrés ne peuvent pas être remplacés. La compatibilité de chaque addon doit être vérifiée dans le jeu.
 
-| Limite                | Maximum |
-| --------------------- | ------: |
-| Archive ZIP           |  128 MB |
-| Archive décompressée  |  256 MB |
-| Fichier individuel    |   64 MB |
-| Bibliothèque d’addons |  384 MB |
-
 **Version expérimentale :** les vérifications locales automatisées réussissent ; la compatibilité complète de l’extension installée avec le client actuel et les addons tiers reste à vérifier. [État de validation](VALIDATION.md).
 
 ## Développement et licence

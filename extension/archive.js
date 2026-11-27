@@ -1,12 +1,5 @@
 import { AddonError } from "./errors.js";
 import { unzipSync, zipSync } from "./vendor/fflate.js";
-export const LIMITS = {
-  archive: 128 * 1024 * 1024,
-  expanded: 256 * 1024 * 1024,
-  file: 64 * 1024 * 1024,
-  count: 32000,
-  total: 384 * 1024 * 1024,
-};
 const decoder = new TextDecoder();
 export function crc32(bytes) {
   let c = 0xffffffff;
@@ -36,7 +29,6 @@ function safePath(name) {
   return p;
 }
 function inspectZip(bytes) {
-  if (bytes.length > LIMITS.archive) throw new AddonError("errorArchiveSize");
   const v = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   let e = -1;
   for (let i = bytes.length - 22; i >= Math.max(0, bytes.length - 65557); i--) {
@@ -56,10 +48,8 @@ function inspectZip(bytes) {
     length = v.getUint32(e + 12, true);
   if (count === 65535 || start === 0xffffffff || length === 0xffffffff)
     throw new AddonError("errorZip");
-  if (count > LIMITS.count || start + length > e)
-    throw new AddonError("errorZip");
-  let at = start,
-    total = 0;
+  if (start + length > e) throw new AddonError("errorZip");
+  let at = start;
   const meta = new Map(),
     seen = new Set();
   for (let i = 0; i < count; i++) {
@@ -90,9 +80,6 @@ function inspectZip(bytes) {
       decoder.decode(bytes.subarray(offset + 30, offset + 30 + ln)) !== name
     )
       throw new AddonError("errorZip");
-    total += size;
-    if (size > LIMITS.file || total > LIMITS.expanded)
-      throw new AddonError("errorExpanded");
     if (seen.has(path.toLowerCase()))
       throw new AddonError("errorDuplicate", { detail: path });
     seen.add(path.toLowerCase());

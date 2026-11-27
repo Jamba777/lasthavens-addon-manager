@@ -1,4 +1,3 @@
-import { LIMITS } from "./archive.js";
 export const emptyLibrary = () => ({ revision: "empty", addons: [] });
 export function mergeAddons(library, items) {
   const next = library.addons.map((a) => ({ ...a }));
@@ -10,8 +9,6 @@ export function mergeAddons(library, items) {
     if (at >= 0) next[at] = addon;
     else next.push(addon);
   }
-  if (next.reduce((n, a) => n + a.size, 0) > LIMITS.total)
-    throw Error("libraryLimit");
   return { ...library, addons: next };
 }
 export function toggleAddon(library, folder, enabled) {

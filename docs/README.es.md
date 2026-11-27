@@ -34,13 +34,6 @@ Extrae la nueva versión en la misma carpeta de instalación. Abre `chrome://ext
 
 Los archivos permanecen en el perfil actual de Chrome. La eliminación conserva los ajustes del juego. No se pueden reemplazar carpetas integradas. La compatibilidad de cada addon debe comprobarse en el juego.
 
-| Límite                | Máximo |
-| --------------------- | -----: |
-| Archivo ZIP           | 128 MB |
-| Archivo descomprimido | 256 MB |
-| Archivo individual    |  64 MB |
-| Biblioteca de addons  | 384 MB |
-
 **Versión experimental:** las comprobaciones locales automatizadas pasan; la compatibilidad completa de la extensión instalada con el cliente actual y los addons de terceros todavía se está verificando. [Estado de validación](VALIDATION.md).
 
 ## Desarrollo y licencia

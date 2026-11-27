@@ -33,6 +33,8 @@ import assert from "node:assert/strict";
           contentType: "text/plain",
           body: "1\tData/test.MPQ\n",
         });
+      if (u.pathname.startsWith("/blocks/"))
+        return route.fulfill({ status: 404 });
       if (u.pathname === "/Wow.js")
         return route.fulfill({
           contentType: "text/javascript",
@@ -61,6 +63,21 @@ import assert from "node:assert/strict";
     );
     assert.deepEqual(Buffer.from(r.bytes), binary.subarray(65536, 131072));
     assert.equal(r.status, 200);
+    const prefetched = await page.evaluate(async () => {
+      const request = new Request(
+        "/blocks/Interface/AddOns/RuntimeProbe/RuntimeProbe.lua/140000-2-64k.bin",
+      );
+      const local = await fetch(request);
+      const remote = await fetch("/blocks/Data/test.MPQ/1-0-64k.bin");
+      return {
+        status: local.status,
+        bytes: [...new Uint8Array(await local.arrayBuffer())],
+        remote: remote.status,
+      };
+    });
+    assert.equal(prefetched.status, 200);
+    assert.deepEqual(Buffer.from(prefetched.bytes), binary.subarray(131072));
+    assert.equal(prefetched.remote, 404);
     console.log(
       "PASS delayed payload + em-pthread bootstrap + manifest overlay + exact binary second 64KB block",
     );
